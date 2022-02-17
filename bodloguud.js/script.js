@@ -68,24 +68,23 @@
 // }
 // console.log(bubbleSort([5, 65, 1, 2, 42, 15]));
 
-// function selectionSort(arr){
-
-//     for(var i = 0; i < arr.lenght; i++){
-//         var lowest = i;
-//         for(var j = i+1;  j < arr.lenght;  j++){
-//             if(arr[j] < arr[lowest]){
-//                 lowest = j;
-//             }
-//         }
-//         var temp = arr[i];
-//         arr[i] = arr[lowest]; // 3, 13, 45, 3, 10
-//         arr[lowest] = temp; // 3, 13, 45, 26, 10
-//     }
-
-//     return arr;
-// }
-// var select = selectionSort([26, 13, 45, 3, 10]);
-// console.log(select);
+function selectionSort(arr) {
+    // [56, 2, 0, 15, 6, 78, 12, 123]
+    for (var i = 0; i < arr.length; i++) {
+      var hamgiinBagaIndex = i;
+      for (var j = i + 1; j < arr.length; j++) {
+        if (arr[hamgiinBagaIndex] > arr[j]) {
+          hamgiinBagaIndex = j;
+        }
+      }
+      var temp = arr[hamgiinBagaIndex];
+      arr[hamgiinBagaIndex] = arr[i];
+      arr[i] = temp;
+    }
+  
+    return arr;
+  }
+  console.log(selectionSort([56, 2, 0, 15, 6, 78, 12, 123]));
 
 // var too = prompt("toog oruul");
 // var tooHuwaasan = too.split("");
