@@ -4,9 +4,78 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Non-Primitive Data types in JS</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      // Array , Object , /RegExp/ - Data structure
+
+      //   var massiv = new Array(123, 34, 56);
+      // []
+      //   var massiv1 = [323, "adfdsdfa", true];
+      //   var nestedMassiv = [
+      //     [234, 3, 1],
+      //     ["da", "daf", "ada"],
+      //   ];
+      // nestedMassiv[0][2] ===>  output ni 1
+      // high order functions - filter, map
+      // push - hamgin suuld element nemj ogno
+      // pop - hamgiin suuliin elementiig ustgah.
+      // shift - hamgiin ehnii elementiig ustgah.
+      // unshift - hamgiin ehend element nemeh
+      // slice - todorhoi hesgiig tasdaj awna.
+      // splice - dundaas ni todorhoi hesgiin ustgah.
+      // reverse - ogogdluudiin bairlaliig urwuu bolgono.
+      // split("haaguur salgah");
+      // join("yu zalgaj niiluuleh");
+      // arr.concat(zalgah massiv)
+      //   TypeScript Tuple - massiv
+      // ... - spread operator massive, object, fucntion deer ashiglagddag
+      //   var mass = [123, 34, 56];
+      //   var arr1 = [];
+      //   arr1.concat(mass); => concat hover hgd uzeh uyed ...items concat caanaa spread operatoriig ashigladag. === [...mass];
+      //   var arr = [123, "a", true];
+      //   if (
+      //     arr.length === 3 &&
+      //     typeof arr[0] === "number" &&
+      //     typeof arr[1] === "string" &&
+      //     typeof arr[2] === "boolean"
+      //   ) {
+      //     console.log("mon");
+      //   } else {
+      //     console.log("bish");
+      //   }
+
+      // OBJECT
+      // var shiree = {
+      //   ongo: "tsagaan",
+      //   material: "Mod",
+      //   ondor: "1 meter",
+      //   hayag: {
+      //     city: "UB",
+      //     duureg: "SBD",
+      //   },
+      // };
+      // shiree["ongo"] === shiree.ongo
+      // shiree.une = [10, 20];
+      // shiree.hayag.city ==> "UB"
+      // [{...} , {...} , {...}]
+      // var sandal = {...shiree,
+      // ongo: "black";
+      // }
+
+      // for in ni massive object 2 uulan deer ni ajillana.
+      // var masss = [12, 13, 14];
+      // for (var el in masss) {
+      //   console.log(el);
+      // }  ===> 0 1 2
+      // for (var el of masss) {
+      //   console.log(el);
+      // } ===> 12 13 14
+
+      // for (var el in hun1) {
+      //   console.log(hun1[el]);
+      // }
+    </script>
   </body>
 </html>
