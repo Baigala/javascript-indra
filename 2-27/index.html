@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Гараас 2ш тоо өгөгдсөн ба, хэрэв тэдгээрийн үрвэр 1000-с их бол үрвэрийг буцааж, 1000-с бага бол нийлбэрийг буцаах функц бич.
+      function ex1(num1, num2) {
+        var urjwer = num1 * num2;
+        if (urjwer > 1000) {
+          return urjwer;
+        }
+        return num1 + num2;
+      }
+      console.log(ex1(2, 501));
+      // 2. 10 хүртэл давталт хийж, тоо тус бүрийг өмнөх тооны нийлбэртэй консолд хэвлэх функц бич
+      function ex2() {
+        var sum = 0;
+        for (var i = 0; i <= 10; i++) {
+          sum += i;
+          console.log(`${i} hurtelh toonii niilber: ${sum}`);
+        }
+      }
+      console.log(ex2());
+      // 3. Гараас стринг өгөгдсөн бол тэгш индекс дээрх тэмдэгтүүдийг хэвлэх функц бич
+      function ex3(text) {
+        for (var i = 0; i < text.length; i++) {
+          if (i % 2 === 0) {
+            console.log(text[i]);
+          }
+        }
+      }
+      console.log(ex3("absd"));
+      // 4. Гараас стринг болон индекс өгөгдсөн бол, стринг дотроос өгөгдсөн индекс хүртэлх тэмдэгтүүдийг устгаж, үлдсэн стрингийг буцаах функц бич
+      function ex4(text, index) {
+        var removeText = "";
+        var restText = "";
+        for (var i = 0; i < text[index]; i++) {
+          removeText += text[i];
+        }
+        restText = text.replace(removeText, "");
+        return restText;
+      }
+      console.log(ex4("1234", 1));
+      // 5. Өгөгдсөн массивын эхний болон сүүлийнй элемент тэнцүү бол true, үгүй бол false буцаа
+      function ex5() {}
+
+      //6. Өгөгдсөн массив дотроос 5-д хуваагддаг тоонуудын нийлбэрийг олж буцаа
+      function ex6(arr) {
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+          if (+arr[i] % 5 === 0) {
+            sum += arr[i];
+          }
+        }
+        return sum;
+      }
+      console.log(ex6([5, 0, 1, 5, 10]));
+
+      // 7. Өгүүлбэр болон үг гараас өгөгдсөн бол, үг нь өгүүлбэр дотор хэдэн удаа давтагдас орсныг тоолж буцаа.
+      //   оролт: sentence = "my name is narada. his name is john" , word = "is" garalt 3
+      function ex7(string, word) {
+        return string.split(word).length - 1;
+      }
+      console.log(ex7("my name is narada. his name is john", "is"));
+      // 8. Дараах пирамидыг хэвлэх функц бич
+      // *
+      // **
+      // ***
+      // ****
+      // *****
+      function ex8() {
+        var num = 5;
+        var string = "";
+        for (var i = 1; i <= num; i++) {
+          for (var j = 0; j < i; j++) {
+            string += "*";
+          }
+          string += "\n";
+        }
+        console.log(string);
+      }
+      console.log(ex8());
+      // 9. Өгөгдсөн тоог палиндром эсэхийг шалгах функц бич
+      function ex9(number) {
+        var result = false;
+        var numString = number.toString();
+        if (number === +numString.split("").reverse().join("")) {
+          result = true;
+        }
+        return result;
+      }
+      // 10. 2 ширхэг массив өгөгдсөн бол эхний массиваас зөвхөн сондгой, 2 дахь массиваас зөвхөн тэгш утгуудыг агуулсан шинэ массив үүсгэж буцаа
+      function ex10(arr1, arr2) {
+        var arrNew = [];
+        var sondgoi = [];
+        var tegsh = [];
+        for (var i = 0; i < arr1.length; i++) {
+          if (+arr1[i] % 2 === 1) {
+            sondgoi.push(arr1[i]);
+          }
+        }
+        for (var j = 0; j < arr2.length; j++) {
+          if (+arr2[j] % 2 === 0) {
+            tegsh.push(arr2[j]);
+          }
+        }
+        arrNew.push(sondgoi, tegsh);
+        return arrNew;
+      }
+      console.log(ex10([1, 2, 3, 4], [5, 6, 7, 8]));
+    </script>
+  </body>
+</html>
