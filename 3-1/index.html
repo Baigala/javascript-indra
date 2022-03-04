@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function addTwoNumbers(a, b) {
+        var result = 0;
+        var num1 = "";
+        var num2 = "";
+        aRev = a.reverse();
+        bRev = b.reverse();
+        aRev.forEach((e) => {
+          num1 += e;
+        });
+        bRev.forEach((e) => {
+          num2 += e;
+        });
+        return (result = +num1 + +num2);
+      }
+      console.log(addTwoNumbers([2, 4, 3], [5, 6, 4]));
+
+      function lengthOfLongestSubstring(str) {
+        var max = 0,
+          current_str = "",
+          char,
+          pos;
+        for (var i = 0; i < str.length; i++) {
+          temdegt = str[i];
+          pos = current_str.indexOf(temdegt);
+          if (pos !== -1) {
+            // cut "dv" to "v" when you see another "d"
+            current_str = current_str.substr(pos + 1);
+          }
+          current_str += temdegt;
+          max = Math.max(max, current_str.length);
+        }
+        return max;
+      }
+      console.log(lengthOfLongestSubstring("dvdf"));
+    </script>
+  </body>
+</html>
