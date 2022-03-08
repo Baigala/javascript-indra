@@ -1,5 +1,7 @@
 // https://leetcode.com/
 // visualgo.net
+// sum(n) = ((a(1) + a(n)) / 2) * n
+
 // var student1 = {
 //     ner: "a",
 //     number: "99221111",
@@ -225,7 +227,7 @@ function calcIndex(arr) {
 }
 console.log(calcIndex([1, 2, 3, -4, 5]));
 // 18. Ogogdson massiv dotorh sondgoi index bolgon sondgoi utga aguulj, tegsh index bolgon tegsh utga aguulj bwal tuhain massiv ni oncgoi massiv bolno. Herew oncgoi massiv taarwal true esreg tohioldold false utga bucaa.
-function ex8(arr) {
+function ex18(arr) {
   var countTrue = 0;
   var bool = false;
   for (var i = 0; i < arr.length; i++) {
@@ -241,9 +243,9 @@ function ex8(arr) {
   }
   return bool;
 }
-console.log(ex8([2, 7, 4, 9, 6, 1, 6, 3]));
+console.log(ex18([2, 7, 4, 9, 6, 1, 6, 3]));
 // 19. Massiv dotor number bolon string torliin toonuud ogogdjee. Zowhon number torliin toonuudiin niilberiig olj bucaa.
-function ex9(arr) {
+function ex19(arr) {
   var sum = 0;
   for (var i = 0; i < arr.length; i++) {
     if (typeof arr[i] === "number") {
@@ -252,9 +254,9 @@ function ex9(arr) {
   }
   return sum;
 }
-console.log(ex9([1, 2, "3"]));
+console.log(ex19([1, 2, "3"]));
 // 20. Massiv dotorh hamgiin suuliin elementees busad buh utguudiig negtgej, hamgiin suuliin elementtei taarj bga esehiig toocoj boolean utga bucaa.
-function ex10(arr) {
+function ex20(arr) {
   var bool = false;
   var sum = "";
   for (var i = 0; i < arr.length - 1; i++) {
@@ -265,9 +267,9 @@ function ex10(arr) {
   }
   return bool;
 }
-console.log(ex10([1, 1, "11"]));
+console.log(ex20([1, 1, "11"]));
 // 21. String torliin too ogogdjee. Buh tegsh cifruudiin niilberiig sondgoi cifruudiin niilbertei haricuulj tegsh cifruudiin niilber ih bol tegsh ih sondgoi ni ih bol sondgoi ih tencuu bol tencuu gsn utgiig bucaa.
-function ex11(text) {
+function ex21(text) {
   var hariu;
   var tegsh = 0;
   var sondgoi = 0;
@@ -289,7 +291,7 @@ function ex11(text) {
   }
   return hariu;
 }
-console.log(ex11("22471"));
+console.log(ex21("22471"));
 
 function bubbleSort(arr){
     var noChange;
