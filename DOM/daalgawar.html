@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      div {
+        display: inline-block;
+      }
+      button {
+        display: inline-block;
+        padding: 10px 20px;
+      }
+      #table {
+        display: block;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Massiv dotor 10 hereglegciin data hadgalaad buh hereglegciin ner bolon email, utasnii dugaariig html husnegt dotor hadgal. -->
+
+    <div>
+      <button>Press</button>
+      <div id="table"></div>
+    </div>
+
+    <script>
+      var button = document.querySelector("button");
+      var myTable = document.querySelector("#table");
+
+      var hereglecArr = [
+        { numero: 1, ner: "James", email: "james@mail.com", dugaar: 91111111 },
+        {
+          numero: 2,
+          ner: "Robert",
+          email: "robert@mail.com",
+          dugaar: 91111111,
+        },
+        { numero: 3, ner: "Sid", email: "sid@mail.com", dugaar: 91111111 },
+        { numero: 4, ner: "Sam", email: "sam@mail.com", dugaar: 91111111 },
+        { numero: 5, ner: "Sally", email: "sally@mail.com", dugaar: 91111111 },
+        {
+          numero: 6,
+          ner: "Selly",
+          email: "sel@mail.com",
+          dugaar: 91111111,
+        },
+        { numero: 7, ner: "Emmy", email: "emmy@mail.com", dugaar: 91111111 },
+        { numero: 8, ner: "Emma", email: "Emma@mail.com", dugaar: 91111111 },
+        { numero: 9, ner: "Jack", email: "jack@mail.com", dugaar: 91111111 },
+        { numero: 10, ner: "Jane", email: "jane@mail.com", dugaar: 91111111 },
+      ];
+
+      var garcigTextuud = ["№", "Name", "Age", "Country"];
+
+      button.addEventListener("click", () => {
+        var table = document.createElement("table");
+        var garcigMor = document.createElement("tr");
+
+        garcigTextuud.forEach((garcigText) => {
+          var garcigNud = document.createElement("th");
+          var textNode = document.createTextNode(garcigText);
+          garcigNud.appendChild(textNode);
+          garcigMor.appendChild(garcigNud);
+        });
+
+        table.appendChild(garcigMor);
+
+        hereglecArr.forEach((hereglegc) => {
+          var mor = document.createElement("tr");
+
+          Object.values(hereglegc).forEach((text) => {
+            var nud = document.createElement("td");
+            var textNode = document.createTextNode(text);
+            nud.appendChild(textNode);
+            mor.appendChild(nud);
+          });
+
+          table.appendChild(mor);
+        });
+
+        myTable.appendChild(table);
+      });
+    </script>
+  </body>
+</html>
