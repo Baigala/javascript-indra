@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawtlaga</title>
+  </head>
+  <body>
+    <script>
+      function makeArray(len) {
+        var arr = [];
+        for (var i = 0; i < len; i++) {
+          arr.push(Math.floor(Math.random() * 100) + 1);
+        }
+        return arr;
+      }
+      // filter => returns boolean true utgandah element;
+      // forEach => void
+      // map => buh elementuudiig bucaadag. ['12', '13', '4'].map(el => +el)
+      //  find neg sh utga olood bucaadag function, findIndex neg sh utga olood indexiin bucaana.
+      var x = [12, 13, 14, 15, 2, 1];
+      var y = x.filter(function (el) {
+        return el < 10;
+      });
+
+      function test(callback, arg, arg2) {
+        callback(arg, arg2);
+      }
+      test(
+        function (el, el2) {
+          console.log(el);
+          console.log(el2);
+        },
+        14,
+        15
+      );
+    </script>
+  </body>
+</html>
