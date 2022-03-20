@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Sign up form</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #4da9c5;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        width: 400px;
+        max-width: 100%;
+      }
+
+      .header {
+        border-bottom: 1px solid #f0f0f0;
+        background-color: #f7f7f7;
+        padding: 10px 40px;
+      }
+
+      .header h2 {
+        margin: 0;
+      }
+
+      .form {
+        padding: 14px 40px;
+      }
+
+      .form-control {
+        margin-bottom: 10px;
+        padding-bottom: 20px;
+        position: relative;
+      }
+
+      .form-control label {
+        display: inline-block;
+        margin-bottom: 5px;
+      }
+
+      .form-control input {
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        display: block;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 8px;
+        width: 100%;
+      }
+
+      .form-control input:focus {
+        outline: 0;
+        border-color: #777;
+      }
+
+      .form-control.success input {
+        border-color: #2ecc71;
+      }
+
+      .form-control.error input {
+        border-color: #e74c3c;
+      }
+
+      .form-control small {
+        color: #e74c3c;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        visibility: hidden;
+      }
+
+      .form-control.error small {
+        visibility: visible;
+      }
+
+      .form button {
+        background-color: #5579c6;
+        border: 2px solid #5579c6;
+        border-radius: 4px;
+        color: #fff;
+        display: block;
+        font-family: inherit;
+        font-size: 16px;
+        padding: 10px;
+        margin-top: 20px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Бүртгүүлэх</h2>
+      </div>
+      <form id="form" class="form">
+        <div class="form-control">
+          <label for="username">Овог нэр</label>
+          <input type="text" id="username" />
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="phoneNumber">Утасны дугаар</label>
+          <input type="text" id="phoneNumber" />
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">И-мэйл</label>
+          <input type="email" id="email" />
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Нууц үг</label>
+          <input type="password" id="password" />
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="username">Нууц үг давтах</label>
+          <input type="password" id="password2" />
+          <small>Error message</small>
+        </div>
+        <button>Бүртгэх</button>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("form");
+      const username = document.getElementById("username");
+      const phoneNumber = document.getElementById("phoneNumber");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const password2 = document.getElementById("password2");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        checkInputs();
+      });
+
+      function checkInputs() {
+        const usernameValue = username.value.trim();
+        const phoneNumberValue = phoneNumber.value.trim();
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const password2Value = password2.value.trim();
+
+        const regName = /[a-z]*(\s)[a-z]{2,19}/i;
+        const regNumber = /[0-9]{8}/;
+        const regPass = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)(?=.{8,})/;
+        const regEmail =
+          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (regName.test(usernameValue)) {
+          setSuccessFor(username);
+        } else if (usernameValue === "") {
+          setErrorFor(username, "Овог нэрээ оруулна уу");
+        } else {
+          setErrorFor(username, "Овог нэр буруу байна.");
+        }
+
+        if (phoneNumberValue === "") {
+          setErrorFor(phoneNumber, "Утасны дугаараа оруулна уу.");
+        } else if (!regNumber.test(phoneNumberValue)) {
+          setErrorFor(phoneNumber, "Буруу дугаар оруулсан байна.");
+        } else {
+          setSuccessFor(phoneNumber);
+        }
+
+        if (emailValue === "") {
+          setErrorFor(email, "И-мэйл хоосон байна.");
+        } else if (!regEmail.test(emailValue)) {
+          setErrorFor(email, "Мэйл хаягаа зөв оруулна уу.");
+        } else {
+          setSuccessFor(email);
+        }
+
+        if (passwordValue === "") {
+          setErrorFor(password, "Нууц үг хоосон байна.");
+        } else if (!regPass.test(passwordValue)) {
+          setErrorFor(password, "Нууц үг буруу байна");
+        } else {
+          setSuccessFor(password);
+        }
+
+        if (password2Value === "") {
+          setErrorFor(password2, "Нууц үг хоосон байна.");
+        } else if (passwordValue !== password2Value) {
+          setErrorFor(password2, "Нууц үг таарахгүй байна.");
+        } else {
+          setSuccessFor(password2);
+        }
+      }
+
+      function setErrorFor(input, message) {
+        const formControl = input.parentElement;
+        const small = formControl.querySelector("small");
+        formControl.className = "form-control error";
+        small.innerText = message;
+      }
+
+      function setSuccessFor(input) {
+        const formControl = input.parentElement;
+        formControl.className = "form-control success";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    ;
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style></style>
+  </head>
+  <body>
+    <script>
+      // Regular Expressions
+      var sentence = "hello i study in indra institute";
+      var reg1 = / in/;
+      var reg2 = /bla|nin|in./gi;
+      var reg3 = /hello/i;
+      // regExp.test(sentence); : boolean.
+      // sentence.match(regExp) : obj | array; 1 shig ogogdol awbal object taarjiga buh ogogdliig bucaahaar bol massive bucaana.
+      //   g - taarch bui buh temdegtiig massive bolgon bucaana.
+      // i - ignore the case buyu tom jijgiin usgiin yalgaag arilgana.
+      // _ temdegt special charactar bish \W gej haihad garj irehgui.
+      // ^ - carret enenees busad gsn ug.
+      // [] haaltan dotor carret orku bol yugaar ehelhiig zaadag.
+      //   $ tosgoliig zaana.
+      //   /^.{10}$/
+      //   \W - temdegt - /[^a-zA-Z0-9_]/.
+      // \S - [^ ] - white space-s busad buh temdegt
+      // \s - white space.
+      //  \d - [0-9] - too
+      // \D - [^0-9] - toonoos busad temdegtiig awna.
+      //   {5, 10} - 5s 10 hoorond {5} dor hayaj, {,10} - hamgiin ihdee 10;
+      // ? /a(?=b)/ a usegnii araas b useg orson.
+      // + taarjiga usgiig
+      //* temdegt bolgon deer taarj bga esehiig shalgana. bhku bol null bucaana.
+
+      var reg4 = /[a-z]/g;
+      var sentence2 =
+        "My name is Narada. And he is my friend.Is His name is blabla is.is.";
+      var reg5 = /\Wis\W|\Wis| is |is\W/gi;
+      var reg6 = /is\.| is | \.is/gi;
+      var len = sentence2.match(reg6);
+      console.log(len);
+      // 3/18/2022 => 3-18-2022;
+      var num = "3/18/2022";
+      console.log(num.replace(/\//g, "-"));
+      var reg7 = /[0-9]/g;
+      //   sentence2.match(reg7).map((e) => {
+      //     return +e;
+      //   });
+
+      // new RegExp() baiguulagc function ashiglaj uusgej bolno.
+      function countCase(sentence, word) {
+        const regEx = new RegExp(word);
+        console.log(sentence.match(regEx));
+      }
+
+      // hereglegc burtgeh form hiine. ovog ner, utas, email, nuuc ug.
+    //   <div class="bg-white rounded-xl p-4 flex flex-col">
+    //     <label>Password</label>
+    //     <p class="text-red-400 requirement">Жижиг үсэг орсон байх</p>
+    //     <p class="text-red-400 requirement">Том үсэг орсон байх</p>
+    //     <p class="text-red-400 requirement">Тоо орсон байх</p>
+    //     <p class="text-red-400 requirement">Тэмдэгт орсон байх - !@#$%^&*</p>
+    //     <p class="text-red-400 requirement">
+    //       Хамгийн багадаа 8 тэмдэгт орсон байх
+    //     </p>
+    //   </div>;
+    </script>
+  </body>
+</html>
