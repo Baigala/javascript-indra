@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // OOP - object oriented programming language
+      // Object
+      // Function
+      // let ashiglaj huwisagciig dahin zarlaj bolohgui.
+      // arrow function dotor this operator ajilladaggui ucraas object function dotor ashigladaggui.
+      // ... - spread operator, ... - rest params ni es6 biciglel
+      //   function restParam(...args) {
+      //     console.log(args);
+      //   }
+      // arrow function
+      //   var y = () => {}
+      // var tst = function(){ } ===> tst();
+
+      //   Constructor function;
+      // new
+      //   function Person(ner, mergejil) {
+      //     this.ner = ner;
+      //     this.mergejil = mergejil;
+      //   }
+      //   Person.prototype.sayYourName = function () {
+      //     return this.ner;
+      //   };
+      //   Person.prototype.changeName = function (name) {
+      //     return `${this.ner} ==> ${(this.ner = name)}`;
+      //   };
+      //   const p1 = new Person("Baigal", "Programmer");
+
+      let arr = [1, 2, 3, 4, 5];
+      // forEach
+      Array.prototype.myForEach = function (param) {
+        for (var i = 0; i < this.length; i++) {
+          param(this[i], i);
+        }
+      };
+      arr.myForEach(function (el) {
+        console.log(el);
+      });
+      // Map
+      Array.prototype.myMap = function (fn) {
+        let result = [];
+        for (var i = 0; i < this.length; i++) {
+          result.push(fn(this[i]));
+        }
+        return result;
+      };
+      console.log(arr.myMap((e) => e * 3));
+      // Filter
+      Array.prototype.myFilter = function (callback) {
+        const filteredArr = [];
+        for (var i = 0; i < this.length; i++) {
+          if (callback(this[i], i)) {
+            filteredArr.push(this[i]);
+          }
+        }
+        return filteredArr;
+      };
+      console.log(arr.myFilter((e) => e >= 3));
+      // Reduce
+      Array.prototype.myReduce = function (callback, initial) {
+        let accumulator = initial || 0;
+        for (var i = 0; i < this.length; i++) {
+          accumulator = callback(accumulator, this[i]);
+        }
+        return accumulator;
+      };
+      console.log(
+        arr.myReduce(
+          (previousValue, currentValue) => previousValue + currentValue,
+          10
+        )
+      );
+      // find
+      Array.prototype.myFind = function (callback) {
+        for (var i = 0; i < this.length; i++) {
+          if (callback(this[i])) {
+            return this[i];
+          }
+        }
+      };
+      console.log(arr.myFind((el) => el < 2));
+      // findIndex
+      Array.prototype.myFindIndex = function (callback) {
+        for (var i = 0; i < this.length; i++) {
+          if (callback(this[i])) {
+            return i;
+          }
+        }
+      };
+      console.log(arr.myFindIndex((el) => el < 2));
+      // some
+      Array.prototype.mySome = function (callback) {
+        for (var i = 0; i < this.length; i++) {
+          if (callback(this[i])) {
+            return true;
+            break;
+          }
+        }
+        return false;
+      };
+      console.log(arr.mySome((el) => el % 2));
+      // every
+      Array.prototype.myEvery = function (callback) {
+        let countTrue = 0;
+        for (var i = 0; i < this.length; i++) {
+          if (callback(this[i])) {
+            countTrue++;
+          }
+        }
+        return countTrue === this.length ? true : false;
+      };
+      console.log([3, 5, 7].myEvery((el) => el % 2));
+    </script>
+  </body>
+</html>

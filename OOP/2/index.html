@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // OOP in es6
+      //   class
+      class Person {
+        constructor(username) {
+          this.username = username;
+        }
+        setName(name) {
+          this.username = name;
+          return this;
+        }
+      }
+
+      // class inheritance
+      class Member extends Person {
+        state = {
+          val: 0,
+          val1: 0,
+        };
+        constructor(username, email) {
+          super(username);
+          this.email = email;
+        }
+        setState(obj) {
+          this.state = {
+            ...this.state,
+            ...obj,
+          };
+          return this;
+        }
+      }
+    </script>
+  </body>
+</html>

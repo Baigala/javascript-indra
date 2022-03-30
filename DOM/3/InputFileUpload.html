@@ -71,8 +71,8 @@
         const spin = document.querySelector(".spin");
         spin.style.display = "block";
         setTimeout(function () {
-          avatar.src = URL.createObjectURL(image);
           spin.style.display = "none";
+          avatar.src = URL.createObjectURL(image);
         }, 3000);
       });
 
