@@ -38,6 +38,38 @@
           return this;
         }
       }
+
+      class Article {
+        constructor(title, userId, body) {
+          this.title = title;
+          this.userId = userId;
+          this.body = body;
+        }
+      }
+
+      class ArticleList {
+        list = [];
+        save(title, userId, body) {
+          const article = new Article(title, userId, body);
+          this.list.push(article);
+        }
+        update(index, title, body) {
+          this.list[index].title = title;
+          this.list[index].body = body;
+        }
+        delete(index) {
+          this.list.splice(this.list[index], 1);
+          return this.list;
+        }
+      }
+      let lists = new ArticleList();
+      lists.save("garcig", "a1234", "medeelel");
+      lists.save("garcig 1", "1sda234", "medeelel 1");
+      console.log(lists);
+      lists.update(0, "solison garcig", "solison medee");
+      console.log(lists);
+      lists.delete(0);
+      console.log(lists);
     </script>
   </body>
 </html>
