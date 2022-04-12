@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="albumContainer"></div>
+
+    <script type="module">
+      import { request } from "./getData.js";
+
+      const query = new Proxy(new URLSearchParams(location.search), {
+        get: (pa, prop) => pa.get(prop),
+      });
+      console.log(query.name);
+      const id = query.userId;
+
+      class TodoUI {
+        albumContainer = document.querySelector(".albumContainer");
+        constructor() {
+          this.init();
+        }
+        async updateUI(data) {
+          this.albumContainer.innerHTML = "";
+          data.forEach((album) => {
+            this.albumContainer.insertAdjacentHTML(
+              "beforeend",
+              `<div class="album">
+                    <div class="title">
+                        <span class="bold">№${album.id}</span> Album: ${album.title}
+                    </div>
+                </div>`
+            );
+          });
+        }
+
+        async init() {
+          this.albumContainer.innerHTML = "loading";
+          const { data, error } = await request.req(
+            `https://jsonplaceholder.typicode.com/albums?userId=${id}`
+          );
+          if (data) {
+            this.updateUI(data);
+          }
+          if (error) {
+            this.albumContainer.innerHTML = error;
+          }
+        }
+      }
+      new TodoUI();
+    </script>
+  </body>
+</html>

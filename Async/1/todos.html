@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="todoContainer"></div>
+
+    <script type="module">
+      import { request } from "./getData.js";
+
+      const query = new Proxy(new URLSearchParams(location.search), {
+        get: (pa, prop) => pa.get(prop),
+      });
+      console.log(query.name);
+      const id = query.userId;
+
+      class TodoUI {
+        todoContainer = document.querySelector(".todoContainer");
+        constructor() {
+          this.init();
+        }
+        async updateUI(data) {
+          this.todoContainer.innerHTML = "";
+          data.forEach((todo) => {
+            this.todoContainer.insertAdjacentHTML(
+              "beforeend",
+              `<div class="todo">
+                    <div class="title  ${todo.completed}">
+                        <span class="bold">№${todo.id}</span> Todo: ${todo.title}
+                    </div>
+                </div>`
+            );
+          });
+        }
+
+        async init() {
+          this.todoContainer.innerHTML = "loading";
+          const { data, error } = await request.req(
+            `https://jsonplaceholder.typicode.com/todos?userId=${id}`
+          );
+          if (data) {
+            this.updateUI(data);
+          }
+          if (error) {
+            this.todoContainer.innerHTML = error;
+          }
+        }
+      }
+      new TodoUI();
+    </script>
+  </body>
+</html>

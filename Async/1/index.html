@@ -1,0 +1,176 @@
+<!-- https://jsonplaceholder.typicode.com/ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="users"></div>
+    <script type="module">
+      // Asynchronous JavaScript
+      // Promise - Амлалт
+      // 1. Pending
+      // Resolve
+      // Reject
+
+      // function TestPromise (nas) {
+      //     return new Promise((amjilttai , amjiltgui) => {
+      //         if(nas >= 18){
+      //             amjilttai("Welcome")
+      //         } else {
+      //             amjiltgui("Handah bolomjgui bna")
+      //         }
+      //     })
+      // }
+
+      // function Level2Promise (bla) {
+      //     return new Promise((a , b) => {
+      //         if(bla === "gg"){
+      //             a("Done!")
+      //         } else {
+      //             b("Error")
+      //         }
+      //     })
+      // }
+
+      // TestPromise(24)
+      //     .then(function(result){
+      //         console.log(result);
+      //         return Level2Promise("gg");
+      //     })
+      //     .then(res => {
+      //         console.log(res);
+      //     })
+      //     .catch(function(err){
+      //         console.log(err)
+      //     });
+
+      // fetch
+      // Client => Request => ( Get , Post , Put , Patch , Delete )
+      // Server => Response => 1. Static HTML, 2. JSON data
+
+      // query string
+      // url + ? + params=value
+      // document.body.insertAdjacentHTML('afterbegin' , '<h1>loading...</h1>')
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      //     .then(function(response){
+      //         if(!response.ok){
+      //             throw new Error("hgsdkjfhgkldsf")
+      //         }
+      //         return response.json()
+      //     })
+      //     .then(function(result){
+      //         result.forEach((user) => {
+      //             document.body.insertAdjacentHTML('afterbegin' , `
+      //                 <h1>${user.name}</h1>
+      //             `)
+      //         })
+      //     })
+      //     .catch(function(err){
+      //         alert(err.message)
+      //     })
+      // function checkAge (nas) {
+      //     try {
+      //         if(nas < 18){
+      //             throw new Error("Handah erhgui bna,!!!")
+      //         }
+
+      //         alert("Welcome")
+      //     } catch (err) {
+      //         alert(err.message)
+      //     }
+      // }
+
+      // Async JS
+
+      import { request } from "./getData.js";
+
+      class DOM {
+        userContainer = document.querySelector(".users");
+        constructor() {
+          this.init();
+          this.eventListener();
+        }
+
+        async updateUI(data) {
+          this.userContainer.innerHTML = "";
+          data.forEach((user) => {
+            this.userContainer.insertAdjacentHTML(
+              "beforeend",
+              `
+                  <div class="user">
+                      <div class="username" id=${user.id}>${user.name}</div>
+                      <div class="btnContainer">
+                            <div class="btn" id="posts">
+                                  <a href="./posts.html?userId=${user.id}&name=${user.name}">get posts</a>
+                            </div>
+                            <div class="btn" id="todos">
+                                 <a href="./todos.html?userId=${user.id}&name=${user.name}">get todos</a>
+                            </div>
+                            <div class="btn" id="albums">
+                               <a href="./albums.html?userId=${user.id}&name=${user.name}">get albums</a>
+                            </div>
+                      </div>
+                  </div>
+            `
+            );
+          });
+        }
+
+        async init() {
+          this.userContainer.innerHTML = "loading";
+          const { data, error } = await request.req(
+            "https://jsonplaceholder.typicode.com/users"
+          );
+          if (data) {
+            this.updateUI(data);
+          }
+
+          if (error) {
+            this.userContainer.innerHTML = error;
+          }
+        }
+        // async getPost(id) {
+        //   const postList = await request.req(
+        //     `https://jsonplaceholder.typicode.com/posts?userId=${id}`
+        //   );
+        //   console.log(postList);
+        // }
+        // async getTodo(id) {
+        //   const todoList = await request.req(
+        //     `https://jsonplaceholder.typicode.com/todos?userId=${id}`
+        //   );
+        //   console.log(todoList);
+        // }
+        // async getAlbum(id) {
+        //   const albumList = await request.req(
+        //     `https://jsonplaceholder.typicode.com/albums?userId=${id}`
+        //   );
+        //   console.log(albumList);
+        // }
+
+        // eventListener() {
+        //   document.addEventListener("click", (e) => {
+        //     if (e.target.id == "posts") {
+        //       const userId = e.target.parentElement.previousElementSibling.id;
+        //       this.getPost(userId);
+        //     } else if (e.target.id == "todos") {
+        //       const userId = e.target.parentElement.previousElementSibling.id;
+        //       this.getTodo(userId);
+        //     } else if (e.target.id == "albums") {
+        //       const userId = e.target.parentElement.previousElementSibling.id;
+        //       this.getAlbum(userId);
+        //     }
+        //   });
+        // }
+      }
+
+      new DOM();
+    </script>
+  </body>
+</html>

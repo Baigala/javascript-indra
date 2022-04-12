@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="postsContainer"></div>
+
+    <script type="module">
+      import { request } from "./getData.js";
+
+      const query = new Proxy(new URLSearchParams(location.search), {
+        get: (pa, prop) => pa.get(prop),
+      });
+      console.log(query.name);
+      const id = query.userId;
+
+      class postUI {
+        postsContainer = document.querySelector(".postsContainer");
+        constructor() {
+          this.init();
+        }
+        async updateUI(data) {
+          this.postsContainer.innerHTML = "";
+          data.forEach((post) => {
+            this.postsContainer.insertAdjacentHTML(
+              "beforeend",
+              `<div class="post">
+                    <div class="title">
+                        <span class="bold">№${post.id}</span> Title: ${post.title}
+                    </div>
+                    <div class="body">
+                    Body: ${post.body}
+                    </div>
+                </div>`
+            );
+          });
+        }
+
+        async init() {
+          this.postsContainer.innerHTML = "loading";
+          const { data, error } = await request.req(
+            `https://jsonplaceholder.typicode.com/posts?userId=${id}`
+          );
+          if (data) {
+            this.updateUI(data);
+          }
+          if (error) {
+            this.postsContainer.innerHTML = error;
+          }
+        }
+      }
+      new postUI();
+    </script>
+  </body>
+</html>
