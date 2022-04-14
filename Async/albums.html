@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="albumContainer"></div>
+    <div class="albumContainer bold"></div>
 
     <script type="module">
       import { request } from "./getData.js";
@@ -25,15 +25,17 @@
           this.init();
         }
         async updateUI(data) {
-          this.albumContainer.innerHTML = "";
+          this.albumContainer.innerHTML = "ALBUMS";
           data.forEach((album) => {
             this.albumContainer.insertAdjacentHTML(
               "beforeend",
-              `<div class="album">
-                    <div class="title">
-                        <span class="bold">№${album.id}</span> Album: ${album.title}
-                    </div>
-                </div>`
+              `<button class="btn">
+                    <a href="./images.html?id=${album.id}">
+                        <div class="title">
+                            <span class="bold">№${album.id}</span> ${album.title}
+                        </div>
+                </a>
+                </button>`
             );
           });
         }

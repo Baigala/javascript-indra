@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="picContainer"></div>
+    <script type="module">
+      import { request } from "./getData.js";
+      const query = new Proxy(new URLSearchParams(location.search), {
+        get: (pa, prop) => pa.get(prop),
+      });
+      const id = query.id;
+      console.log(id);
+
+      class ImageUI {
+        picContainer = document.getElementById("picContainer");
+        imgSmall = document.getElementById("imgSmall");
+        imgBig = document.getElementById("imgBig");
+        constructor() {
+          this.init();
+        }
+        async updateUI(data) {
+          this.picContainer.innerHTML = "";
+          this.picContainer.insertAdjacentHTML(
+            "afterbegin",
+            `
+            <div class="pic image1">
+              <div class="bold">Thumbnail image:</div>
+              <img
+                id="imgSmall"
+                src="${data[0].thumbnailUrl}"
+                alt=""
+              />
+            </div>
+            <div class="pic image2">
+              <div class="bold">Image:</div>
+              <img
+                id="imgBig"
+                src="${data[0].url}"
+                alt=""
+              />
+            </div>
+            `
+          );
+        }
+
+        async init() {
+          this.picContainer.innerHTML = "loading";
+          const { data, error } = await request.req(
+            `https://jsonplaceholder.typicode.com/photos?id=${id}`
+          );
+          if (data) {
+            this.updateUI(data);
+          }
+          if (error) {
+            this.picContainer.innerHTML = error;
+          }
+        }
+      }
+      new ImageUI();
+    </script>
+  </body>
+</html>
