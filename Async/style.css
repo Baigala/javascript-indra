@@ -84,7 +84,11 @@ body {
     gap: 1rem;
 }
 .container {
+  width: 100%;
+  height: 100vh;
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 #picContainer {
     display: flex;
@@ -93,6 +97,7 @@ body {
     align-items: center;
     gap: 4rem;
     font-size: 14px;
+    margin-top: 1rem;
 }
 .image1 {
     width: 150px;
@@ -113,4 +118,7 @@ img {
     justify-content: center;
     align-items: center;
     gap: .5rem;
+}
+.border {
+  border-bottom: 1px solid #666;
 }

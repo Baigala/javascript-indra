@@ -8,61 +8,68 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="picContainer"></div>
+    <div class="container"></div>
+
     <script type="module">
       import { request } from "./getData.js";
+
       const query = new Proxy(new URLSearchParams(location.search), {
         get: (pa, prop) => pa.get(prop),
       });
-      const id = query.id;
-      console.log(id);
+      console.log(query.albumId);
 
-      class ImageUI {
-        picContainer = document.getElementById("picContainer");
-        imgSmall = document.getElementById("imgSmall");
-        imgBig = document.getElementById("imgBig");
+      class imageUI {
+        container = document.querySelector(".container");
         constructor() {
           this.init();
         }
         async updateUI(data) {
-          this.picContainer.innerHTML = "";
-          this.picContainer.insertAdjacentHTML(
-            "afterbegin",
+          this.container.innerHTML = "";
+          data.forEach((img) => {
+            this.container.insertAdjacentHTML(
+              "beforeend",
+              `
+            <div id="picContainer">
+                <div class="pic image1">
+                  <div class="bold">Thumbnail image:</div>
+                  <img
+                    id="imgSmall"
+                    src="${img.thumbnailUrl}"
+                    alt=""
+                  />
+                </div>
+                <div class="pic image2">
+                  <div class="bold">Image:</div>
+                  <img
+                    id="imgBig"
+                    src="${img.url}"
+                    alt=""
+                  />
+                </div>
+          </div>
+          <div class="border"></div>
             `
-            <div class="pic image1">
-              <div class="bold">Thumbnail image:</div>
-              <img
-                id="imgSmall"
-                src="${data[0].thumbnailUrl}"
-                alt=""
-              />
-            </div>
-            <div class="pic image2">
-              <div class="bold">Image:</div>
-              <img
-                id="imgBig"
-                src="${data[0].url}"
-                alt=""
-              />
-            </div>
-            `
-          );
+            );
+          });
         }
 
         async init() {
-          this.picContainer.innerHTML = "loading";
+          this.container.innerHTML = "loading";
           const { data, error } = await request.req(
-            `https://jsonplaceholder.typicode.com/photos?id=${id}`
+            `https://jsonplaceholder.typicode.com/photos?albumId=${query.albumId}`
           );
           if (data) {
             this.updateUI(data);
+            console.log(data);
           }
           if (error) {
-            this.picContainer.innerHTML = error;
+            this.container.innerHTML = error;
           }
         }
       }
-      new ImageUI();
+      new imageUI();
     </script>
   </body>
 </html>
+
+<!--  -->

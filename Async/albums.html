@@ -19,18 +19,19 @@
       console.log(query.name);
       const id = query.userId;
 
-      class TodoUI {
+      class AlbumUI {
         albumContainer = document.querySelector(".albumContainer");
         constructor() {
           this.init();
         }
         async updateUI(data) {
           this.albumContainer.innerHTML = "ALBUMS";
+          console.log(data);
           data.forEach((album) => {
             this.albumContainer.insertAdjacentHTML(
               "beforeend",
               `<button class="btn">
-                    <a href="./images.html?id=${album.id}">
+                    <a href="./images.html?albumId=${album.id}">
                         <div class="title">
                             <span class="bold">№${album.id}</span> ${album.title}
                         </div>
@@ -53,7 +54,7 @@
           }
         }
       }
-      new TodoUI();
+      new AlbumUI();
     </script>
   </body>
 </html>

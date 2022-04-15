@@ -251,18 +251,8 @@
             password: passwordValue,
           });
           localStorage.setItem("user", JSON.stringify(arr));
-          // existing = existing ? JSON.parse(existing) : {};
         }
       }
-
-      window.addEventListener("onload", function () {
-        var existing = localStorage.getItem("user");
-        if (existing) {
-          arr = arr.push(existing);
-        } else {
-          arr = [];
-        }
-      });
 
       function setErrorFor(input, message) {
         const formControl = input.parentElement;
